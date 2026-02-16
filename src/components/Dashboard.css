@@ -1,0 +1,73 @@
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dashboard h1 {
+  margin-bottom: 0;
+}
+
+.dashboard-subtitle {
+  color: #999;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.stat-price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.stat-date {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.chart-panel {
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.panel-title {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.status {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.error {
+  color: #dc2626;
+}

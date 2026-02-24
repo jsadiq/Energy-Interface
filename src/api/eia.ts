@@ -1,4 +1,10 @@
-import type { PriceDataPoint, PricesApiResponse } from "../types";
+import type {
+  PriceDataPoint,
+  PricesApiResponse,
+  ProductionApiResponse,
+  ProductionDataPoint,
+  StateInfo,
+} from "../types";
 
 export async function fetchNaturalGasPrices(): Promise<PriceDataPoint[]> {
   const response = await fetch("/api/prices?series_id=RNGWHHD&limit=60");
@@ -57,5 +63,41 @@ export async function fetchMultipleSeries(
   results.forEach((res) => {
     map.set(res.series_id, res.data);
   });
+  return map;
+}
+
+// --- Production API ---
+
+export async function fetchProduction(
+  seriesId: string,
+  limit: number = 120
+): Promise<ProductionApiResponse> {
+  const response = await fetch(
+    `/api/production?series_id=${seriesId}&limit=${limit}`
+  );
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  }
+  return response.json();
+}
+
+export async function fetchProductionStates(): Promise<StateInfo[]> {
+  const response = await fetch("/api/production/states");
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  }
+  const json = await response.json();
+  return json.states;
+}
+
+export async function fetchMultipleProduction(
+  seriesIds: string[],
+  limit: number = 120
+): Promise<Map<string, ProductionDataPoint[]>> {
+  const results = await Promise.all(
+    seriesIds.map((id) => fetchProduction(id, limit))
+  );
+  const map = new Map<string, ProductionDataPoint[]>();
+  results.forEach((res) => map.set(res.series_id, res.data));
   return map;
 }

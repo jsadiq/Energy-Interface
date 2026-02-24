@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .database import Base, engine
 from .routers.prices import router as prices_router
+from .routers.production import router as production_router
 from .schemas import HealthResponse
 
 Base.metadata.create_all(bind=engine)
@@ -17,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(prices_router)
+app.include_router(production_router)
 
 
 @app.get("/api/health", response_model=HealthResponse)

@@ -17,6 +17,35 @@
   margin-bottom: 0;
 }
 
+.tab-bar {
+  display: flex;
+  gap: 0;
+}
+
+.tab-bar button {
+  padding: 0.6em 1.5em;
+  font-size: 0.95rem;
+  border: 1px solid #444;
+  background: transparent;
+  color: #999;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-bar button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.tab-bar button:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.tab-bar button.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
 .stat-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
